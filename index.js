@@ -45,10 +45,36 @@ class LinkedList {
     }
     return array;
   }
+  insert(index, value) {
+    if (index < 0 || index > this.length) return;
+    if (index === 0) {
+      this.prepend(value);
+      return this.printlist();
+    }
+    if (index === this.length) {
+      this.append(value);
+      return this.printlist();
+    }
+    const newNode = {
+      value: value,
+      next: null,
+    };
+    let currentNode = this.head;
+    for (let i = 0; i < index - 1; i++) {
+      currentNode = currentNode.next;
+    }
+    newNode.next = currentNode.next;
+    currentNode.next = newNode;
+    this.length++;
+    console.log(this.printlist());
+    return this.printlist();
+  }
 }
 
 const brandNewLinkedList = new LinkedList(10);
 brandNewLinkedList.append(5);
 brandNewLinkedList.append(12);
 brandNewLinkedList.prepend(20);
+brandNewLinkedList.insert(3, 99);
+brandNewLinkedList.insert(2, 39);
 console.log(brandNewLinkedList);
