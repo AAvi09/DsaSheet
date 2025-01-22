@@ -51,7 +51,7 @@ class LinkedList {
       this.prepend(value);
       return this.printlist();
     }
-    if (index === this.length) {
+    if (index >= this.length) {
       this.append(value);
       return this.printlist();
     }
@@ -78,3 +78,19 @@ brandNewLinkedList.prepend(20);
 brandNewLinkedList.insert(3, 99);
 brandNewLinkedList.insert(2, 39);
 console.log(brandNewLinkedList);
+
+//LINKED LIST CYCLE QUESTION
+
+var hasCycle = function (head) {
+  if (head === null) return false;
+  let slow = head;
+  let fast = head.next;
+
+  while (fast !== null && fast.next !== null) {
+    slow = slow.next;
+    fast = fast.next.next;
+
+    if (slow === fast) return true;
+  }
+  return false;
+};
