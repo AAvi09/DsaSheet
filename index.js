@@ -86,6 +86,20 @@ class LinkedList {
     console.log(this.printlist());
     return this.printlist();
   }
+  reverse(head) {
+    let previous = null;
+    let current = this.head;
+    let next = null;
+    while (current !== null) {
+      next = current.next;
+      current.next = previous;
+      previous = current;
+      current = next;
+    }
+    this.head = previous;
+    console.log(this.printlist());
+    return this.head;
+  }
 }
 
 const brandNewLinkedList = new LinkedList(10);
@@ -95,6 +109,7 @@ brandNewLinkedList.prepend(20);
 brandNewLinkedList.insert(3, 99);
 brandNewLinkedList.insert(2, 39);
 brandNewLinkedList.remove(3);
+brandNewLinkedList.reverse();
 console.log(brandNewLinkedList);
 
 //LINKED LIST CYCLE QUESTION
@@ -112,3 +127,21 @@ var hasCycle = function (head) {
   }
   return false;
 };
+class ListNode {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+  }
+}
+
+function createLinkedList(arr) {
+  let head = new ListNode(arr[0]);
+  let current = head;
+
+  for (let i = 1; i < arr.length; i++) {
+    current.next = new ListNode(arr[i]);
+    current = current.next;
+  }
+
+  return head;
+}
