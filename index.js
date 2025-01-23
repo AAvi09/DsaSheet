@@ -69,6 +69,23 @@ class LinkedList {
     console.log(this.printlist());
     return this.printlist();
   }
+
+  remove(index) {
+    if (index < 0 || index >= this.length) return;
+    if (index === 0) {
+      this.head = this.head.next;
+      this.length--;
+      console.log(this.printlist());
+    }
+    let currentNode = this.head;
+    for (let i = 0; i < index - 1; i++) {
+      currentNode = currentNode.next;
+    }
+    currentNode.next = currentNode.next.next;
+    this.length--;
+    console.log(this.printlist());
+    return this.printlist();
+  }
 }
 
 const brandNewLinkedList = new LinkedList(10);
@@ -77,6 +94,7 @@ brandNewLinkedList.append(12);
 brandNewLinkedList.prepend(20);
 brandNewLinkedList.insert(3, 99);
 brandNewLinkedList.insert(2, 39);
+brandNewLinkedList.remove(3);
 console.log(brandNewLinkedList);
 
 //LINKED LIST CYCLE QUESTION
